@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux-static-test
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.web: regexp:^((?!tmp).)*$
+  labels:
+    app: flux-static-test
+spec:
+  selector:
+    matchLabels:
+      app: flux-static-test
+  template:
+    metadata:
+      labels:
+        app: flux-static-test
+    spec:
+      containers:
+        - name: web
+          image: kapa89/flux-static-test:master
