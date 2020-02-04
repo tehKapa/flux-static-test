@@ -1,0 +1,37 @@
+version: 2
+
+jobs:
+  build-and-publish:
+    docker:
+      - image: docker/compose:1.25.4
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build the image
+          command: docker-compose build
+      - run:
+          name: Tag the image
+          command: |
+            docker tag kapa89/flux-static-test kapa89/flux-static-test:$CIRCLE_SHA1
+            docker tag kapa89/flux-static-test kapa89/flux-static-test:latest
+      - run:
+          name: Login to Docker Hub
+          command: |
+            USERNAME=$(echo $DOCKER_HUB_USERNAME | base64 -d)
+            PASSWORD=$(echo $DOCKER_HUB_PASSWORD | base64 -d)
+            docker login --username $USERNAME --password $PASSWORD
+      - run:
+          name: Publish the image to Docker Hub
+          command: |
+            docker push kapa89/flux-static-test:$CIRCLE_SHA1
+            docker push kapa89/flux-static-test:latest
+
+workflows:
+  version: 2
+  build-and-publish:
+    jobs:
+      - build-and-publish:
+          filters:
+            branches:
+              only: master
