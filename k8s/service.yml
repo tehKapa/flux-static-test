@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: hello
+    - name: flux-static-test
       port: 80
       targetPort: 8000
       protocol: TCP

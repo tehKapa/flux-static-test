@@ -19,3 +19,5 @@ spec:
       containers:
         - name: flux-static-test
           image: kapa89/flux-static-test
+          ports:
+            - containerPort: 80
