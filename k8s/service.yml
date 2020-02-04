@@ -7,7 +7,7 @@ spec:
   ports:
     - name: flux-static-test
       port: 80
-      targetPort: 8000
+      targetPort: 80
       protocol: TCP
   selector:
     app: flux-static-test
