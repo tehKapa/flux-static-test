@@ -4,7 +4,7 @@ metadata:
   name: flux-static-test
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.web: regexp:^((?!tmp).)*$
+    flux.weave.works/tag.flux-static-test: regexp:^((?!tmp).)*$
   labels:
     app: flux-static-test
 spec:
@@ -17,5 +17,5 @@ spec:
         app: flux-static-test
     spec:
       containers:
-        - name: web
+        - name: flux-static-test
           image: kapa89/flux-static-test:master
