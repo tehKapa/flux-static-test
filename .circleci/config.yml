@@ -18,9 +18,7 @@ jobs:
       - run:
           name: Login to Docker Hub
           command: |
-            USERNAME=$(echo $DOCKER_HUB_USERNAME | base64 -d)
-            PASSWORD=$(echo $DOCKER_HUB_PASSWORD | base64 -d)
-            docker login --username $USERNAME --password $PASSWORD
+            docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
       - run:
           name: Publish the image to Docker Hub
           command: |
